@@ -1,0 +1,52 @@
+[
+  {
+    "orderNumber": 1,
+    "rating": 4.5,
+    "comment": "The Sashimi was fresh and delicious. Loved the presentation!"
+  },
+  {
+    "orderNumber": 2,
+    "rating": 5.0,
+    "comment": "The Nigiri was perfect, and the soy sauce added a nice touch. Will order again!"
+  },
+  {
+    "orderNumber": 3,
+    "rating": 3.8,
+    "comment": "Maki was good, but a bit small. The ginger was a nice palate cleanser."
+  },
+  {
+    "orderNumber": 4,
+    "rating": 4.0,
+    "comment": "Enjoyed the Tempura Roll, crispy and flavorful. Soy sauce complemented it well."
+  },
+  {
+    "orderNumber": 5,
+    "rating": 4.7,
+    "comment": "The Dragon Roll was amazing! A perfect blend of flavors and textures."
+  },
+  {
+    "orderNumber": 6,
+    "rating": 3.5,
+    "comment": "Rainbow Roll was decent, but the soy sauce was missed. Good overall."
+  },
+  {
+    "orderNumber": 7,
+    "rating": 4.8,
+    "comment": "Spicy Tuna Roll had the right amount of kick. Highly recommended!"
+  },
+  {
+    "orderNumber": 8,
+    "rating": 4.2,
+    "comment": "Salmon Nigiri was fresh, and the ginger added a nice zing. Enjoyable."
+  },
+  {
+    "orderNumber": 9,
+    "rating": 4.0,
+    "comment": "Eel Roll was tasty and satisfying. A good choice for sushi lovers."
+  },
+  {
+    "orderNumber": 10,
+    "rating": 3.9,
+    "comment": "Vegetarian Roll was decent, but could use more variety in ingredients."
+  }
+]

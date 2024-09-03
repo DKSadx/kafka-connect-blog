@@ -1,0 +1,10 @@
+# kafkaBootstrapServer: kafka-headless.kafka.svc.cluster.local:29092
+kafkaBootstrapServer: "[REQUIRED]"
+kafkaUsername: "[OPTIONAL, if auth is disabled]"
+kafkaPassword: "[OPTIONAL, if auth is disabled]"
+schemaRegistryKey: "[REQUIRED]"
+schemaRegistrySecret: "[REQUIRED]"
+schemaRegistryUrl: "[REQUIRED]"
+ordersProtobufTopic: "[OPTIONAL]"
+reviewsProtobufTopic: "[OPTIONAL]"
+customersAvroTopic: "[OPTIONAL]"

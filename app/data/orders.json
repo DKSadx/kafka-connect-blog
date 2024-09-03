@@ -1,0 +1,92 @@
+[
+  {
+    "orderNumber": 1,
+    "customerId": 1,
+    "sushiType": "Sashimi",
+    "quantity": 2,
+    "wasabi": true,
+    "ginger": true,
+    "soySauce": false
+  },
+  {
+    "orderNumber": 2,
+    "customerId": 2,
+    "sushiType": "Nigiri",
+    "quantity": 3,
+    "wasabi": true,
+    "ginger": false,
+    "soySauce": true
+  },
+  {
+    "orderNumber": 3,
+    "customerId": 3,
+    "sushiType": "Maki",
+    "quantity": 1,
+    "wasabi": false,
+    "ginger": true,
+    "soySauce": true
+  },
+  {
+    "orderNumber": 4,
+    "customerId": 4,
+    "sushiType": "Tempura Roll",
+    "quantity": 2,
+    "wasabi": true,
+    "ginger": false,
+    "soySauce": true
+  },
+  {
+    "orderNumber": 5,
+    "customerId": 5,
+    "sushiType": "Dragon Roll",
+    "quantity": 1,
+    "wasabi": true,
+    "ginger": true,
+    "soySauce": true
+  },
+  {
+    "orderNumber": 6,
+    "customerId": 6,
+    "sushiType": "Rainbow Roll",
+    "quantity": 2,
+    "wasabi": false,
+    "ginger": true,
+    "soySauce": false
+  },
+  {
+    "orderNumber": 7,
+    "customerId": 7,
+    "sushiType": "Spicy Tuna Roll",
+    "quantity": 1,
+    "wasabi": true,
+    "ginger": true,
+    "soySauce": true
+  },
+  {
+    "orderNumber": 8,
+    "customerId": 8,
+    "sushiType": "Salmon Nigiri",
+    "quantity": 3,
+    "wasabi": false,
+    "ginger": true,
+    "soySauce": false
+  },
+  {
+    "orderNumber": 9,
+    "customerId": 9,
+    "sushiType": "Eel Roll",
+    "quantity": 2,
+    "wasabi": true,
+    "ginger": false,
+    "soySauce": true
+  },
+  {
+    "orderNumber": 10,
+    "customerId": 10,
+    "sushiType": "Vegetarian Roll",
+    "quantity": 1,
+    "wasabi": false,
+    "ginger": true,
+    "soySauce": true
+  }
+]

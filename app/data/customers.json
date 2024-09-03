@@ -1,0 +1,72 @@
+[
+  {
+    "customerId": 1,
+    "name": "John Doe",
+    "contact": "john.doe@example.com",
+    "address": "123 Main St, Cityville",
+    "phone": "+1-555-1234"
+  },
+  {
+    "customerId": 2,
+    "name": "Jane Smith",
+    "contact": "jane.smith@example.com",
+    "address": "456 Oak St, Townsville",
+    "phone": "+1-555-5678"
+  },
+  {
+    "customerId": 3,
+    "name": "Alice Johnson",
+    "contact": "alice.johnson@example.com",
+    "address": "789 Pine St, Villagetown",
+    "phone": "+1-555-9012"
+  },
+  {
+    "customerId": 4,
+    "name": "Bob Anderson",
+    "contact": "bob.anderson@example.com",
+    "address": "101 Cedar St, Hamletville",
+    "phone": "+1-555-3456"
+  },
+  {
+    "customerId": 5,
+    "name": "Eva Miller",
+    "contact": "eva.miller@example.com",
+    "address": "202 Birch St, Woodsville",
+    "phone": "+1-555-7890"
+  },
+  {
+    "customerId": 6,
+    "name": "Chris Lee",
+    "contact": "chris.lee@example.com",
+    "address": "303 Maple St, Grovetown",
+    "phone": "+1-555-2345"
+  },
+  {
+    "customerId": 7,
+    "name": "Sophia Hernandez",
+    "contact": "sophia.hernandez@example.com",
+    "address": "404 Elm St, Riverdale",
+    "phone": "+1-555-6789"
+  },
+  {
+    "customerId": 8,
+    "name": "David Taylor",
+    "contact": "david.taylor@example.com",
+    "address": "505 Oak St, Hilltop",
+    "phone": "+1-555-0123"
+  },
+  {
+    "customerId": 9,
+    "name": "Olivia White",
+    "contact": "olivia.white@example.com",
+    "address": "606 Pine St, Summitville",
+    "phone": "+1-555-4567"
+  },
+  {
+    "customerId": 10,
+    "name": "Michael Brown",
+    "contact": "michael.brown@example.com",
+    "address": "707 Cedar St, Lakeside",
+    "phone": "+1-555-8901"
+  }
+]

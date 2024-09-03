@@ -1,0 +1,22 @@
+{
+  "name": "kafka_connect_dlq",
+  "config": {
+    "buffer.count.records": "10000",
+    "buffer.flush.time": "10",
+    "buffer.size.bytes": "5000000",
+    "connector.class": "com.snowflake.kafka.connector.SnowflakeSinkConnector",
+    "snowflake.database.name": "KAFKA_CONNECT_DEMO",
+    "snowflake.ingestion.method": "SNOWPIPE_STREAMING",
+    "snowflake.role.name": "kafka_connector_role_sushi",
+    "snowflake.private.key": "",
+    "snowflake.private.key.passphrase": "",
+    "snowflake.schema.name": "SUSHI_RESTAURANT",
+    "snowflake.url.name": "",
+    "snowflake.user.name": "kafka_connect_sushi_user",
+    "tasks.max": "8",
+    "topics": "kafka_connect_dlq",
+    "snowflake.topic2table.map": "kafka_connect_dlq:DEAD_LETTER_QUEUE",
+    "errors.log.enable": true,
+    "errors.log.include.messages": true
+  }
+}

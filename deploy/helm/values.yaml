@@ -1,0 +1,150 @@
+kafkaConnect:
+  # image:
+  #   repository: ubuntu/kafka
+  #   pullPolicy: IfNotPresent
+  #   # Overrides the image tag whose default is the chart appVersion.
+  #   tag: "latest"
+
+  connectors:
+    - type: avro
+      enabled: true
+      name: customers
+      schemaRegistry:
+        enabled: true
+      replicaCount: 3
+      image:
+        repository: dksadx/kafka-connect-snowflake
+        pullPolicy: Always
+        tag: latest
+      snowflake:
+        # Must be the same as the name in snowflake.json
+        # This name is used for health checks and the app will crash if the names do not match
+        connectorName: snowflake_sushi_customers
+        configPath: configs/snowflake-avro.json
+      connectDistributed:
+        configPath: configs/connect-distributed-avro.properties
+      probes:
+        startupProbe:
+          enabled: true
+          failureThreshold: 5
+          periodSeconds: 45
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
+        livenessProbe:
+          enabled: true
+          failureThreshold: 5
+          periodSeconds: 60
+          timeoutSeconds: 5
+      resources:
+        requests:
+          cpu: 0.5
+          memory: 512Mi
+        limits:
+          cpu: 1
+          memory: 1024Mi
+      autoscaling:
+        enabled: false
+        minReplicas: 3
+        maxReplicas: 5
+        targetCPUUtilizationPercentage: 80
+        targetMemoryUtilizationPercentage: 80
+    - type: protobuf
+      enabled: true
+      name: reviews-orders
+      schemaRegistry:
+        enabled: true
+      replicaCount: 3
+      image:
+        repository: dksadx/kafka-connect-snowflake
+        pullPolicy: Always
+        tag: latest
+      snowflake:
+        # Must be the same as the name in snowflake.json
+        # This name is used for health checks and the app will crash if the names do not match
+        connectorName: snowflake_sushi_reviews_orders
+        configPath: configs/snowflake-protobuf.json
+      connectDistributed:
+        configPath: configs/connect-distributed-protobuf.properties
+      probes:
+        startupProbe:
+          enabled: true
+          failureThreshold: 5
+          periodSeconds: 45
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
+        livenessProbe:
+          enabled: true
+          failureThreshold: 5
+          periodSeconds: 60
+          timeoutSeconds: 5
+      resources:
+        requests:
+          cpu: 0.5
+          memory: 512Mi
+        limits:
+          cpu: 1
+          memory: 1024Mi
+      autoscaling:
+        enabled: false
+        minReplicas: 3
+        maxReplicas: 5
+        targetCPUUtilizationPercentage: 80
+        targetMemoryUtilizationPercentage: 80
+    - type: string
+      enabled: true
+      name: dlq
+      schemaRegistry:
+        enabled: true
+      replicaCount: 3
+      image:
+        repository: dksadx/kafka-connect-snowflake
+        pullPolicy: Always
+        tag: latest
+      snowflake:
+        # Must be the same as the name in snowflake.json
+        # This name is used for health checks and the app will crash if the names do not match
+        connectorName: snowflake_sushi_dlq
+        configPath: configs/snowflake-dlq.json
+      connectDistributed:
+        configPath: configs/connect-distributed-dlq.properties
+      probes:
+        startupProbe:
+          enabled: true
+          failureThreshold: 5
+          periodSeconds: 45
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
+        livenessProbe:
+          enabled: true
+          failureThreshold: 5
+          periodSeconds: 60
+          timeoutSeconds: 5
+      resources:
+        requests:
+          cpu: 0.5
+          memory: 512Mi
+        limits:
+          cpu: 1
+          memory: 1024Mi
+      autoscaling:
+        enabled: false
+        minReplicas: 3
+        maxReplicas: 5
+        targetCPUUtilizationPercentage: 80
+        targetMemoryUtilizationPercentage: 80
+
+demoApp:
+  enabled: true
+  name: sushi-restaurant-kafka-demo-app
+  image:
+    repository: dksadx/sushi-restaurant-kafka-demo-app
+    pullPolicy: Always
+    tag: latest
+  configPath: configs/config.yaml
+  resources:
+    requests:
+      cpu: 0.2
+      memory: 128Mi
+    limits:
+      cpu: 0.4
+      memory: 256Mi

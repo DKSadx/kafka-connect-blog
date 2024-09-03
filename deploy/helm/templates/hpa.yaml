@@ -1,0 +1,36 @@
+{{- range $i, $connector := .Values.kafkaConnect.connectors }}
+{{- if $connector.autoscaling.enabled }}
+{{- $name := printf "%s-%s-%s-%d" (include "kafkaConnect.name" $) $connector.name $connector.type $i | trunc 63 }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ $name }}
+  labels:
+    {{- include "kafkaConnect.labels" $ | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ $name }}
+  minReplicas: {{ $connector.autoscaling.minReplicas }}
+  maxReplicas: {{ $connector.autoscaling.maxReplicas }}
+  metrics:
+    {{- if $connector.autoscaling.targetCPUUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ $connector.autoscaling.targetCPUUtilizationPercentage }}
+    {{- end }}
+    {{- if $connector.autoscaling.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ $connector.autoscaling.targetMemoryUtilizationPercentage }}
+    {{- end }}
+{{- end }}
+---
+{{- end }}

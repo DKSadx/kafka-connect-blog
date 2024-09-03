@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package="./;main";
+
+message Order {
+    int64 orderNumber = 1 [json_name="orderNumber"];
+    int64 customerId = 2 [json_name="customerId"];
+    string sushiType = 3 [json_name="sushiType"];
+    int32 quantity = 4 [json_name="quantity"];
+    bool wasabi = 5 [json_name="wasabi"];
+    bool ginger = 6 [json_name="ginger"];
+    bool soySauce = 7 [json_name="soySauce"];
+}

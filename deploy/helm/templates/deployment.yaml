@@ -1,0 +1,67 @@
+{{- range $i, $connector := .Values.kafkaConnect.connectors }}
+{{- $name := printf "%s-%s-%s-%d" (include "kafkaConnect.name" $) $connector.name $connector.type $i | trunc 63 }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  labels:
+    name: {{ $name }}
+    {{- include "kafkaConnect.labels" $ | nindent 4 }}
+spec:
+  {{- if not $connector.autoscaling.enabled }}
+  replicas: {{ $connector.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      name: {{ $name }}
+      {{- include "kafkaConnect.selectorLabels" $ | nindent 6 }}
+  template:
+    metadata:
+      {{- with $connector.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        name: {{ $name }}
+        {{- include "kafkaConnect.labels" $ | nindent 8 }}
+	{{- with $connector.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      containers:
+        - name: app
+          image: "{{ $connector.image.repository }}:{{ $connector.image.tag | default "latest" }}"
+          imagePullPolicy: {{ $connector.image.pullPolicy }}
+          {{- if $connector.probes.startupProbe.enabled }}
+          startupProbe:
+            exec:
+              command:
+                - /opt/kafka/bin/restart-connector.sh
+                - /opt/kafka/config/custom/snowflake.json
+            failureThreshold: {{ $connector.probes.startupProbe.failureThreshold }}
+            periodSeconds: {{ $connector.probes.startupProbe.periodSeconds }}
+            initialDelaySeconds: {{ $connector.probes.startupProbe.initialDelaySeconds }} 
+            timeoutSeconds: {{ $connector.probes.startupProbe.timeoutSeconds }}
+          {{- end }}
+          {{- if $connector.probes.livenessProbe.enabled }}
+          livenessProbe:
+            httpGet:
+              path: {{ printf "/connectors/%s" $connector.snowflake.connectorName }}
+              port: 8083
+            failureThreshold: {{ $connector.probes.livenessProbe.failureThreshold }}
+            periodSeconds: {{ $connector.probes.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ $connector.probes.livenessProbe.timeoutSeconds }}
+          {{- end }}
+          resources:
+            {{- toYaml $connector.resources | nindent 12 }}
+          volumeMounts:
+            - name: {{ $connector.name }}
+              mountPath: /opt/kafka/config/custom
+              readOnly: true
+      volumes:
+        - name: {{ $connector.name }}
+          secret:
+            secretName: {{ $name }}
+            optional: false
+---
+{{- end }}

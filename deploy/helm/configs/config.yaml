@@ -1,0 +1,11 @@
+# bootstrapServer: kafka-headless.kafka.svc.cluster.local:29092
+kafkaBootstrapServer:
+kafkaGroupId: kafkaconnect
+kafkaUsername:
+kafkaPassword:
+schemaRegistryKey:
+schemaRegistrySecret:
+schemaRegistryUrl:
+ordersProtobufTopic: proto-orders
+reviewsProtobufTopic: proto-reviews
+customersAvroTopic: avro-customers

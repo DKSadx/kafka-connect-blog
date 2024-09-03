@@ -1,0 +1,32 @@
+{{- if .Values.demoApp.enabled }}
+{{- with .Values.demoApp }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .name }}
+  labels:
+    name: {{ .name }}
+    {{- include "kafkaConnect.labels" $ | nindent 4 }}
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: app
+          image: "{{ .image.repository }}:{{ .image.tag | default "latest" }}"
+          imagePullPolicy: {{ .image.pullPolicy }}
+          resources:
+            {{- toYaml .resources | nindent 12 }}
+          volumeMounts:
+            - name: config
+              mountPath: /app/config.yaml
+              subPath: config.yaml
+              readOnly: true
+      volumes:
+        - name: config
+          secret:
+            secretName: {{ .name }}
+            optional: false
+  backoffLimit: 2
+{{- end }}
+{{- end }}
